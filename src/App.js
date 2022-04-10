@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='hero'>
+        <div className='circle'>
+          <span className='element ' style={{ '--i': 1 }}>
+            <b>one</b>
+          </span>
+          <span className='element ' style={{ '--i': 2 }}>
+            <b> two</b>
+          </span>
+          <span className='element ' style={{ '--i': 3 }}>
+            <b>three</b>
+          </span>
+          <span className='element ' style={{ '--i': 4 }}>
+            <b>four</b>
+          </span>
+          <span className='element ' style={{ '--i': 5 }}>
+            <b>five</b>
+          </span>
+          <span className='element ' style={{ '--i': 6 }}>
+            <b>six</b>
+          </span>
+          <span className='element ' style={{ '--i': 7 }}>
+            <b>seven</b>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
