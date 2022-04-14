@@ -2,13 +2,12 @@
 .inner-carousel{
   display: flex;
   flex-direction: row;
-  background-color: lightblue;
-  
+  box-sizing: border-box;
 }
 
 .carousel{
   cursor: grab;
-  background-color: firebrick;
+
   position: relative;
   overflow: hidden;
 
@@ -29,14 +28,16 @@
 .left-arrow{
   left: 5px;
   top: 50%;
-  transform: translateY(-50%) rotate(.5turn);
 }
 .right-arrow{
   right: 5px;
   top: 50%;
-  transform: translateY(-50%);
 }
 
 .right-arrow svg,.left-arrow svg{
-  transform: scale(0.9);
+  width: 60%;
+}
+.left-arrow svg{
+  transform: rotate(0.5turn);
+
 }
