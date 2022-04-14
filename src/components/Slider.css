@@ -7,10 +7,8 @@
 
 .carousel{
   cursor: grab;
-
   position: relative;
   overflow: hidden;
-
 }
 .left-arrow,.right-arrow{
   position: absolute;
@@ -39,5 +37,4 @@
 }
 .left-arrow svg{
   transform: rotate(0.5turn);
-
 }
