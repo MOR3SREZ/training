@@ -1,0 +1,10 @@
+.App{
+  font-family: 'Open Sans Condensed', sans-serif;
+  background: linear-gradient(to right, #dde3e6, #8e9eab);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
