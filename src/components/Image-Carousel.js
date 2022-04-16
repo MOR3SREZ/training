@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './Image-Carousel.css';
@@ -9,6 +9,12 @@ import strawberry from '../assets/img/bottle_strawberry_003.png';
 
 const slides = [apple, grapes, strawberry, apple, grapes, strawberry];
 
+// const variant = {
+//   initial: {},
+//   animate: {},
+//   exit: {},
+// };
+
 const ImageCarousel = () => {
   const [current, setCurrent] = useState({
     index: 0,
@@ -18,29 +24,32 @@ const ImageCarousel = () => {
     index: '',
     dir: '',
   });
+  const [prev, setPrev] = useState({
+    index: '',
+    dir: '',
+  });
 
   const [isAnimate, setIsAnimate] = useState(false);
 
-  //Variabels
+  //Variable
   const slidesLength = slides.length;
   const autoScroll = true;
   let slideInterval;
   let intervalTime = 5000;
 
-  //go Right in Exit
-  //go Left in Exit
-
-  //start from Right to Mid
-  //start from left to mid
   //Functions
   const goNextAnime = (index, dir) => {
     setNext({ index: index, dir: dir });
   };
+  // const goPrevAnime = (index, dir) => {
+  //   setPrev({ index: index, dir: dir });
+  // };
 
+  //main function for rotate
   const goTo = (index, dir) => {
     goNextAnime(index, dir);
-    setCurrent({ index: index, dir: dir });
     console.log(current.index, index);
+    setCurrent({ index: index, dir: dir });
   };
 
   const goStep = (dir) => {
