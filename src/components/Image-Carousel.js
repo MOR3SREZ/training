@@ -15,45 +15,33 @@ const slides = [apple, grapes, strawberry, apple, grapes, strawberry];
 //   exit: {},
 // };
 
+/*** Component main */
 const ImageCarousel = () => {
-  const [current, setCurrent] = useState({
-    index: 0,
-    dir: 1,
-  });
-  const [next, setNext] = useState({
-    index: '',
-    dir: '',
-  });
-  const [prev, setPrev] = useState({
-    index: '',
-    dir: '',
-  });
-
-  const [isAnimate, setIsAnimate] = useState(false);
-
   //Variable
   const slidesLength = slides.length;
   const autoScroll = true;
   let slideInterval;
   let intervalTime = 5000;
 
-  //Functions
-  const goNextAnime = (index, dir) => {
-    setNext({ index: index, dir: dir });
-  };
-  // const goPrevAnime = (index, dir) => {
-  //   setPrev({ index: index, dir: dir });
-  // };
+  //states
+  const [current, setCurrent] = useState(0);
+  const [next, setNext] = useState({ index: '', dir: '' });
+  const [prev, setPrev] = useState({ index: '', dir: '' });
 
+  const [isAnimate, setIsAnimate] = useState(false);
+
+  //Functions
   //main function for rotate
   const goTo = (index, dir) => {
-    goNextAnime(index, dir);
-    console.log(current.index, index);
-    setCurrent({ index: index, dir: dir });
+    if (isAnimate) return;
+    setPrev({ index: current, dir: dir });
+    setNext({ index: index, dir: dir });
+    setCurrent(index);
+    console.log(index, dir);
   };
 
   const goStep = (dir) => {
-    let index = current.index + dir;
+    let index = current + dir;
     let len = slidesLength;
     let currentIndex = (index + len) % len;
     goTo(currentIndex, dir);
@@ -61,11 +49,9 @@ const ImageCarousel = () => {
 
   //Click events prev & next
   const goNext = () => {
-    if (isAnimate) return;
     goStep(1);
   };
   const goPrev = () => {
-    if (isAnimate) return;
     goStep(-1);
   };
 
@@ -79,35 +65,63 @@ const ImageCarousel = () => {
       auto();
     }
     return () => clearInterval(slideInterval);
-  }, [autoScroll, current.index, slideInterval]);
+  }, [autoScroll, current, slideInterval]);
 
   return (
     <div className='slider'>
       <ul className='slider-list'>
         <AnimatePresence>
-          {slides.map(
-            (item, i) =>
-              current.index === i && (
+          {slides.map((item, i) => {
+            if (next.index === i) {
+              return (
                 <motion.li
                   className='slider-item'
                   key={i}
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
-                  initial={{ rotate: `${current.dir * 180}deg` }}
+                  initial={{ rotate: `${next.dir * -180}deg` }}
                   animate={{ rotate: 0 }}
-                  exit={{
-                    rotate: `${
-                      next.dir ? next.dir * -180 : current.dir * -180
-                    }deg`,
-                  }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
                   <div className='image-container'>
                     <img src={item} alt='' />
                   </div>
                 </motion.li>
-              )
-          )}
+              );
+            } else if (prev.index === i) {
+              return (
+                <motion.li
+                  className='slider-item'
+                  key={i}
+                  onAnimationStart={() => setIsAnimate(true)}
+                  onAnimationComplete={() => setIsAnimate(false)}
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: `${prev.dir * 180}deg` }}
+                  transition={{ duration: 1.5, type: 'spring' }}
+                >
+                  <div className='image-container'>
+                    <img src={item} alt='' />
+                  </div>
+                </motion.li>
+              );
+            } else if (current === i) {
+              return (
+                <motion.li
+                  className='slider-item'
+                  key={i}
+                  onAnimationStart={() => setIsAnimate(true)}
+                  onAnimationComplete={() => setIsAnimate(false)}
+                  initial={{ rotate: `${prev.dir * 180}deg` }}
+                  animate={{ rotate: 0 }}
+                  transition={{ duration: 1.5, type: 'spring' }}
+                >
+                  <div className='image-container'>
+                    <img src={item} alt='' />
+                  </div>
+                </motion.li>
+              );
+            }
+          })}
         </AnimatePresence>
       </ul>
       <div className='slider__arrow'>
