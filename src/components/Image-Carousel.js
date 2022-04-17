@@ -65,7 +65,7 @@ const ImageCarousel = () => {
       auto();
     }
     return () => clearInterval(slideInterval);
-  }, [autoScroll, current, slideInterval]);
+  }, [current]);
 
   return (
     <div className='slider'>
@@ -79,7 +79,7 @@ const ImageCarousel = () => {
                   key={i}
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
-                  initial={{ rotate: `${next.dir * -180}deg` }}
+                  initial={{ rotate: `${next.dir * +180}deg` }}
                   animate={{ rotate: 0 }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
@@ -96,7 +96,7 @@ const ImageCarousel = () => {
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
                   initial={{ rotate: 0 }}
-                  animate={{ rotate: `${prev.dir * 180}deg` }}
+                  animate={{ rotate: `${prev.dir * -180}deg` }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
                   <div className='image-container'>
@@ -111,7 +111,7 @@ const ImageCarousel = () => {
                   key={i}
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
-                  initial={{ rotate: `${prev.dir * 180}deg` }}
+                  initial={{ rotate: `${prev.dir * -180}deg` }}
                   animate={{ rotate: 0 }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
