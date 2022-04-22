@@ -2,11 +2,16 @@
     .slider {
       position: relative;
       display: block;
-      width: 50%;
-      height: 50%;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
     }
 
+    *{
+      --strawberry:#f2695c;
+      --grapes:#635B92;
+      --apple:#FFA94E;
+    }
     .slider__arrow {
       position: absolute;
       top: 50%;
@@ -53,8 +58,8 @@
      transform: rotate(180deg);
    }
    .slider-item .image-container{
-      width: 60%;
-      height:60%;
+      width: 100%;
+      height:80%;
       /* background-color: red; */
       display: flex;
       align-items: center;

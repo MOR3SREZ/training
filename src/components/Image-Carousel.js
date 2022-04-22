@@ -3,11 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import './Image-Carousel.css';
 
-import apple from '../assets/img/bottle_apple_002.png';
-import grapes from '../assets/img/bottle_grapes_001.png';
-import strawberry from '../assets/img/bottle_strawberry_003.png';
+import apple from '../assets/hero-pictures/54.png';
+import grapes from '../assets/hero-pictures/55.png';
+import strawberry from '../assets/hero-pictures/52 (2).png';
 
 const slides = [apple, grapes, strawberry, apple, grapes, strawberry];
+const slidesName = [
+  'apple',
+  'grapes',
+  'strawberry',
+  'apple',
+  'grapes',
+  'strawberry',
+];
 
 // const variant = {
 //   initial: {},
@@ -80,7 +88,10 @@ const ImageCarousel = () => {
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
                   initial={{ rotate: `${next.dir * +180}deg` }}
-                  animate={{ rotate: 0 }}
+                  animate={{
+                    rotate: 0,
+                    backgroundColor: `var(--${slidesName[i]})`,
+                  }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
                   <div className='image-container'>
@@ -95,7 +106,10 @@ const ImageCarousel = () => {
                   key={i}
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
-                  initial={{ rotate: 0 }}
+                  initial={{
+                    rotate: 0,
+                    backgroundColor: `var(--${slidesName[i]})`,
+                  }}
                   animate={{ rotate: `${prev.dir * -180}deg` }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
@@ -112,7 +126,10 @@ const ImageCarousel = () => {
                   onAnimationStart={() => setIsAnimate(true)}
                   onAnimationComplete={() => setIsAnimate(false)}
                   initial={{ rotate: `${prev.dir * -180}deg` }}
-                  animate={{ rotate: 0 }}
+                  animate={{
+                    rotate: 0,
+                    backgroundColor: `var(--${slidesName[i]})`,
+                  }}
                   transition={{ duration: 1.5, type: 'spring' }}
                 >
                   <div className='image-container'>
